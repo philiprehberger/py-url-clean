@@ -40,6 +40,14 @@ clean_many(["https://example.com?utm_source=x", ...])
 - `normalize(url)` — Lowercase host, sort params, resolve path
 - `clean_many(urls, extra_params=None)` — Batch clean
 
+
+## Development
+
+```bash
+pip install -e .
+python -m pytest tests/ -v
+```
+
 ## License
 
 MIT
