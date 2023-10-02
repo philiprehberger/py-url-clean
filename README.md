@@ -3,6 +3,7 @@
 [![Tests](https://github.com/philiprehberger/py-url-clean/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/py-url-clean/actions/workflows/publish.yml)
 [![PyPI version](https://img.shields.io/pypi/v/philiprehberger-url-clean.svg)](https://pypi.org/project/philiprehberger-url-clean/)
 [![License](https://img.shields.io/github/license/philiprehberger/py-url-clean)](LICENSE)
+[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
 
 Remove tracking parameters from URLs.
 
