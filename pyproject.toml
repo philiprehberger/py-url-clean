@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "philiprehberger-url-clean"
-version = "0.1.0"
+version = "0.1.1"
 description = "Remove tracking parameters from URLs"
 readme = "README.md"
 license = "MIT"
@@ -24,9 +24,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/philiprehberger/py-url-clean"
+Homepage = "https://github.com/philiprehberger/py-url-clean#readme"
 Repository = "https://github.com/philiprehberger/py-url-clean"
 Issues = "https://github.com/philiprehberger/py-url-clean/issues"
+Changelog = "https://github.com/philiprehberger/py-url-clean/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/philiprehberger_url_clean"]
