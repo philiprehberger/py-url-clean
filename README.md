@@ -1,5 +1,9 @@
 # philiprehberger-url-clean
 
+[![Tests](https://github.com/philiprehberger/py-url-clean/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/py-url-clean/actions/workflows/publish.yml)
+[![PyPI version](https://img.shields.io/pypi/v/philiprehberger-url-clean.svg)](https://pypi.org/project/philiprehberger-url-clean/)
+[![License](https://img.shields.io/github/license/philiprehberger/py-url-clean)](LICENSE)
+
 Remove tracking parameters from URLs.
 
 ## Installation
