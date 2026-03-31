@@ -2,8 +2,7 @@
 
 [![Tests](https://github.com/philiprehberger/py-url-clean/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/py-url-clean/actions/workflows/publish.yml)
 [![PyPI version](https://img.shields.io/pypi/v/philiprehberger-url-clean.svg)](https://pypi.org/project/philiprehberger-url-clean/)
-[![License](https://img.shields.io/github/license/philiprehberger/py-url-clean)](LICENSE)
-[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
+[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/py-url-clean)](https://github.com/philiprehberger/py-url-clean/commits/main)
 
 Remove tracking parameters from URLs.
 
@@ -41,7 +40,6 @@ clean_many(["https://example.com?utm_source=x", ...])
 - `normalize(url)` — Lowercase host, sort params, resolve path
 - `clean_many(urls, extra_params=None)` — Batch clean
 
-
 ## Development
 
 ```bash
@@ -49,6 +47,24 @@ pip install -e .
 python -m pytest tests/ -v
 ```
 
+## Support
+
+If you find this project useful:
+
+⭐ [Star the repo](https://github.com/philiprehberger/py-url-clean)
+
+🐛 [Report issues](https://github.com/philiprehberger/py-url-clean/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+
+💡 [Suggest features](https://github.com/philiprehberger/py-url-clean/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
+❤️ [Sponsor development](https://github.com/sponsors/philiprehberger)
+
+🌐 [All Open Source Projects](https://philiprehberger.com/open-source-packages)
+
+💻 [GitHub Profile](https://github.com/philiprehberger)
+
+🔗 [LinkedIn Profile](https://www.linkedin.com/in/philiprehberger)
+
 ## License
 
-MIT
+[MIT](LICENSE)
