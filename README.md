@@ -35,10 +35,12 @@ clean_many(["https://example.com?utm_source=x", ...])
 
 ## API
 
-- `clean(url, extra_params=None)` — Remove known tracking parameters
-- `remove_params(url, params)` — Remove specific parameters
-- `normalize(url)` — Lowercase host, sort params, resolve path
-- `clean_many(urls, extra_params=None)` — Batch clean
+| Function / Class | Description |
+|------------------|-------------|
+| `clean(url, extra_params=None)` | Remove known tracking parameters |
+| `remove_params(url, params)` | Remove specific parameters |
+| `normalize(url)` | Lowercase host, sort params, resolve path |
+| `clean_many(urls, extra_params=None)` | Batch clean |
 
 ## Development
 
