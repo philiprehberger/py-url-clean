@@ -31,6 +31,18 @@ normalize("HTTPS://Example.COM/path/../page?b=2&a=1")
 
 # Batch processing
 clean_many(["https://example.com?utm_source=x", ...])
+
+# Get the list of stripped params alongside the cleaned URL
+from philiprehberger_url_clean import clean_url, register_tracking_param
+
+cleaned, removed = clean_url("https://example.com?utm_source=x&id=1")
+# cleaned = "https://example.com?id=1"
+# removed = ["utm_source"]
+
+# Add a custom tracking param at runtime
+register_tracking_param("internal_ref")
+clean("https://example.com?internal_ref=abc&id=1")
+# "https://example.com?id=1"
 ```
 
 ## API
@@ -38,9 +50,12 @@ clean_many(["https://example.com?utm_source=x", ...])
 | Function / Class | Description |
 |------------------|-------------|
 | `clean(url, extra_params=None)` | Remove known tracking parameters |
+| `clean_url(url, extra_params=None)` | Returns `(cleaned_url, removed_params)` tuple |
 | `remove_params(url, params)` | Remove specific parameters |
 | `normalize(url)` | Lowercase host, sort params, resolve path |
 | `clean_many(urls, extra_params=None)` | Batch clean |
+| `register_tracking_param(name)` | Add a parameter to the global tracking set |
+| `unregister_tracking_param(name)` | Remove a parameter from the global tracking set |
 
 ## Development
 

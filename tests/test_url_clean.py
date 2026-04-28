@@ -1,4 +1,12 @@
-from philiprehberger_url_clean import clean, remove_params, normalize, clean_many
+from philiprehberger_url_clean import (
+    clean,
+    clean_many,
+    clean_url,
+    normalize,
+    register_tracking_param,
+    remove_params,
+    unregister_tracking_param,
+)
 
 
 def test_clean_utm_params():
@@ -75,3 +83,36 @@ def test_clean_extra_params():
 def test_no_query_string():
     url = "https://example.com/page"
     assert clean(url) == url
+
+
+def test_clean_url_returns_removed_list():
+    url = "https://example.com?utm_source=x&fbclid=y&id=1"
+    cleaned, removed = clean_url(url)
+    assert "utm_source" not in cleaned
+    assert "fbclid" not in cleaned
+    assert "id=1" in cleaned
+    assert removed == ["fbclid", "utm_source"]
+
+
+def test_clean_url_no_trackers_returns_empty_list():
+    cleaned, removed = clean_url("https://example.com?id=1")
+    assert removed == []
+    assert "id=1" in cleaned
+
+
+def test_register_tracking_param():
+    register_tracking_param("internal_ref")
+    try:
+        result = clean("https://example.com?internal_ref=abc&id=1")
+        assert "internal_ref" not in result
+        assert "id=1" in result
+    finally:
+        unregister_tracking_param("internal_ref")
+
+    # After unregistering it should no longer be stripped
+    result = clean("https://example.com?internal_ref=abc&id=1")
+    assert "internal_ref=abc" in result
+
+
+def test_unregister_unknown_param_is_noop():
+    unregister_tracking_param("never_added_xyz")
