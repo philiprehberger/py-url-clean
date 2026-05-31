@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from urllib.parse import urlparse, urlunparse, urlencode, parse_qs
+from urllib.parse import urlparse, urlunparse, urlencode, parse_qs, parse_qsl
 
 
 __all__ = [
@@ -11,6 +11,8 @@ __all__ = [
     "remove_params",
     "normalize",
     "clean_many",
+    "domain",
+    "is_clean",
     "register_tracking_param",
     "unregister_tracking_param",
     "TRACKING_PARAMS",
@@ -122,6 +124,37 @@ def normalize(url: str) -> str:
     )
 
     return urlunparse((scheme, netloc, path, parsed.params, query, parsed.fragment))
+
+
+def domain(url: str) -> str:
+    """Return the hostname (lowercased) from a URL.
+
+    Strips scheme, port, path, query, and fragment. URLs without a
+    scheme are treated as host-only.
+
+    Examples:
+        domain("https://Example.com/foo?utm=x") -> "example.com"
+        domain("example.com/path") -> "example.com"
+        domain("https://example.com:8080/") -> "example.com"
+    """
+    parsed = urlparse(url)
+    if not parsed.scheme:
+        parsed = urlparse("http://" + url)
+    return (parsed.hostname or "").lower()
+
+
+def is_clean(url: str) -> bool:
+    """Return True when *url* contains no tracking params from the known set.
+
+    Companion to clean()/clean_url(); useful as a filter predicate.
+    """
+    parsed = urlparse(url)
+    if not parsed.query:
+        return True
+    for key, _ in parse_qsl(parsed.query, keep_blank_values=True):
+        if key in TRACKING_PARAMS:
+            return False
+    return True
 
 
 def clean_many(urls: list[str], *, extra_params: set[str] | None = None) -> list[str]:

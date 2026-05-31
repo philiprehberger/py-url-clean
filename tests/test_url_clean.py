@@ -2,6 +2,8 @@ from philiprehberger_url_clean import (
     clean,
     clean_many,
     clean_url,
+    domain,
+    is_clean,
     normalize,
     register_tracking_param,
     remove_params,
@@ -116,3 +118,35 @@ def test_register_tracking_param():
 
 def test_unregister_unknown_param_is_noop():
     unregister_tracking_param("never_added_xyz")
+
+
+def test_domain_basic():
+    assert domain("https://example.com/foo") == "example.com"
+
+
+def test_domain_lowercased():
+    assert domain("https://EXAMPLE.com/") == "example.com"
+
+
+def test_domain_strips_port():
+    assert domain("https://example.com:8080/") == "example.com"
+
+
+def test_domain_no_scheme():
+    assert domain("example.com/path") == "example.com"
+
+
+def test_is_clean_no_query():
+    assert is_clean("https://example.com/") is True
+
+
+def test_is_clean_with_tracking_param():
+    assert is_clean("https://example.com/?utm_source=newsletter") is False
+
+
+def test_is_clean_non_tracking_param():
+    assert is_clean("https://example.com/?id=42") is True
+
+
+def test_is_clean_mixed_params():
+    assert is_clean("https://example.com/?id=42&utm_source=x") is False

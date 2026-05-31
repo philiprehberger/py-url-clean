@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0 (2026-05-30)
+
+- Add `domain()` extracting just the hostname from a URL
+- Add `is_clean()` boolean predicate — True when no tracking params are present
+
 ## 0.2.0 (2026-04-27)
 
 - Add `clean_url()` returning `(cleaned_url, removed_params)` tuple for audit/logging use cases

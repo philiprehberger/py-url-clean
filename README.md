@@ -45,6 +45,33 @@ clean("https://example.com?internal_ref=abc&id=1")
 # "https://example.com?id=1"
 ```
 
+### Extracting the domain
+
+```python
+from philiprehberger_url_clean import domain
+
+domain("https://Example.com/foo?utm=x")
+# "example.com"
+
+domain("https://example.com:8080/")
+# "example.com"
+
+domain("example.com/path")
+# "example.com"
+```
+
+### Checking if a URL is clean
+
+```python
+from philiprehberger_url_clean import is_clean
+
+is_clean("https://example.com/?id=42")
+# True
+
+is_clean("https://example.com/?utm_source=newsletter")
+# False
+```
+
 ## API
 
 | Function / Class | Description |
@@ -54,6 +81,8 @@ clean("https://example.com?internal_ref=abc&id=1")
 | `remove_params(url, params)` | Remove specific parameters |
 | `normalize(url)` | Lowercase host, sort params, resolve path |
 | `clean_many(urls, extra_params=None)` | Batch clean |
+| `domain(url)` | Return the lowercased hostname from a URL |
+| `is_clean(url)` | Return `True` when no tracking params are present |
 | `register_tracking_param(name)` | Add a parameter to the global tracking set |
 | `unregister_tracking_param(name)` | Remove a parameter from the global tracking set |
 
